@@ -8,12 +8,21 @@
 (setq inhibit-splash-screen t)
 
 (setq display-line-numbers-type 'relative)
+(setq make-backup-files nil)
+(setq ring-bell-function 'ignore)
 
 (column-number-mode 1)
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
 (scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 (electric-pair-mode 1)
+
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-light t))
 
 ; c config
 (setq c-basic-offset 2)
