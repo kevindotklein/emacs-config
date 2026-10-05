@@ -10,6 +10,9 @@
 (setq display-line-numbers-type 'relative)
 (setq make-backup-files nil)
 (setq ring-bell-function 'ignore)
+(setq scroll-margin 5)
+(setq scroll-conservatively 101)
+(setq scroll-preserve-screen-position t)
 
 (column-number-mode 1)
 (show-paren-mode 1)
@@ -19,16 +22,33 @@
 (menu-bar-mode -1)
 (electric-pair-mode 1)
 
+(global-set-key (kbd "M-/") 'completion-at-point)
+
 (use-package solarized-theme
   :ensure t
   :config
   (load-theme 'solarized-light t))
 
-; c config
+(set-face-attribute 'default nil :font "Maple Mono-18")
+
+					; c config
 (setq c-basic-offset 2)
 
-; svelte config
+					; svelte config
 (use-package svelte-mode
-  :mode "\\.svelte\\'")
+  :mode "\\.svelte\\'"
+  :hook (svelte-mode . eglot-ensure))
+
+;; (use-package svelte-mode
+;;   :mode "\\.svelte\\'"
+;;   :hook (svelte-mode . eglot-ensure)
+;;   :config
+;;   (with-eval-after-load 'eglot
+;;     (add-to-list 'eglot-server-programs
+;;                  '(svelte-mode . ("svelteserver" "--stdio")))))
+
+					; hex cofig
+(add-to-list 'auto-mode-alist '("\\.bin\\'" . hexl-mode))
+
 
 (load-file custom-file)
