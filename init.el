@@ -13,6 +13,7 @@
 (setq scroll-margin 5)
 (setq scroll-conservatively 101)
 (setq scroll-preserve-screen-position t)
+;; (setq eldoc-echo-area-use-multiline-p nil)
 
 (column-number-mode 1)
 (show-paren-mode 1)
@@ -23,6 +24,10 @@
 (electric-pair-mode 1)
 
 (global-set-key (kbd "M-/") 'completion-at-point)
+
+(add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            (eldoc-mode -1)))
 
 (use-package solarized-theme
   :ensure t
